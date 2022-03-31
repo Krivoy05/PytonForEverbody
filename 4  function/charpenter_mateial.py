@@ -2,7 +2,7 @@
 import random
 import math
 
-"""
+
 #The max and min functions give us the largest and smallest values in a list, respectively:
 print("Max value in a list \"Hello World is\": " + str(max('Hello world')))
 print("Min value in a list \"Hello World is\": " + str(min('Hello world')))
@@ -48,7 +48,6 @@ try:
 except:
     print("Provided number in not a numbers")
 print("Sqrt from "+str(sqrt)+" is: "+str(math.sqrt(sqrt)))
-"""
 
 def print_lyrics():
     print("I'm a lumberjack, and I'm okay.")
@@ -64,5 +63,10 @@ def repeat_lyrycs():
     print_lyrics()
     print_lyrics()
 
- x=x+1
 repeat_lyrycs()
+
+def print_twice(word_to_print):
+    print(word_to_print)
+    print(word_to_print)
+
+print_twice(input("Print something, we will repeat it tiwce it: ")*4)
