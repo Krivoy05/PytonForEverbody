@@ -12,7 +12,7 @@ def computepay(hours, rate):
         if hours <= normal_time_hours:
          result = hours*rate
         else:
-            result = rate *normal_time_hours +(multipluer_overtime*rate*(hours-normal_time_hours))
+            result = rate *normal_time_hours + (multipluer_overtime*rate*(hours-normal_time_hours))
     except: result =-1
     print_pay(result, hours, rate)
     return result
@@ -23,7 +23,7 @@ def print_pay(pay, hours, rate):
         print("Cant calculate pay, incorrect input data")
     else:
         print("You're worked: " + str(hours) + " hours")
-        print("Normal rate is count for hours: " + str(normal_time_hours) + "   | You earn: "+ str(normal_time_hours*rate) + " dollars")
+        print("Normal rate is count for hours: " + str(normal_time_hours) + "    | You earn: "+ str(normal_time_hours*rate) + " dollars")
         if hours >= 41:
             print("Normal 1,5 rate is count for hours: " + str(hours - normal_time_hours) + "| You earn: "
               + str((hours - normal_time_hours)*multipluer_overtime*rate) + " dollars")
@@ -31,5 +31,5 @@ def print_pay(pay, hours, rate):
 
 
 
-pay = computepay(41, 10)
+pay = computepay(60, 60)
 
