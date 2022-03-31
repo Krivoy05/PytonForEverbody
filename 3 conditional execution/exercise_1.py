@@ -2,3 +2,12 @@
 #Enter Hours: 45
 #Enter Rate: 10
 #Pay: 475.0
+
+hours= 45
+rate = 10
+if hours >= 41:
+    pay= rate*40 +(hours-40)*1.5*rate
+else:
+    pay = hours*rate
+
+print(pay)
