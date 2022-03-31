@@ -64,4 +64,5 @@ def repeat_lyrycs():
     print_lyrics()
     print_lyrics()
 
+ x=x+1
 repeat_lyrycs()
