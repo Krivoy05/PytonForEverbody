@@ -20,9 +20,5 @@ def count_sum(str1):
             sum += int(symbol)
     return sum
 
-
 str1 = "PYnative29@#8496"
-
-
-
 print("Sum is: " +str(count_sum(str1))+ " Average is: " +str(count_sum(str1)/count_digits(str1)))

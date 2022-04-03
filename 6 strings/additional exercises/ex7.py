@@ -25,7 +25,7 @@ def find_str_optimised(input_string, searched_value):
     return input_string.lower().count(searched_value.lower())
 
 str1 = "Welcome to USA. usa awesome, isn't it?"
-search = input("Input text to search: ")
 
-print("\""+search+"\" was writed "+str(find_str_optimised(str1,search))+" times in text")
+#search = input("Input text to search: ")
+#print("\""+search+"\" was writed "+str(find_str_optimised(str1,search))+" times in text")
 
