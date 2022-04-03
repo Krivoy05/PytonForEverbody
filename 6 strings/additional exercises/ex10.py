@@ -18,4 +18,4 @@ def revers_str(str):
     return result_str
 
 str1 = "PYnative"
-print(revers_str(str1))
+#print(revers_str(str1))
