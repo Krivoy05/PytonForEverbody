@@ -21,10 +21,11 @@ def find_str(input_string , searched_value):
         lowered_input = lowered_input[position_of_search_value+searched_value_lenght:]
     return counter
 
-
+def find_str_optimised(input_string, searched_value):
+    return input_string.lower().count(searched_value.lower())
 
 str1 = "Welcome to USA. usa awesome, isn't it?"
 search = input("Input text to search: ")
 
-print("\""+search+"\" was writed "+str(find_str(str1,search))+" times in text")
+print("\""+search+"\" was writed "+str(find_str_optimised(str1,search))+" times in text")
 

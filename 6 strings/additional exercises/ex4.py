@@ -53,9 +53,10 @@ def count_digits(str):
 
 str1 = "P@#yn26at^&i5ve"
 
+"""
 print("Total counts of chars, digits, and symbols")
 
 print("Chars = " + str(count_chars(str1)))
 print("Digits = " + str(count_digits(str1)))
 print("Symbol = " + str(count_symbols_optimised(str1)))
-
+"""
