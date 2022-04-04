@@ -18,10 +18,10 @@ data
 scientist
 """
 
-def find_and_replace_symbol(input_string, search_value, replace_value):
+def find_and_replace_symbol(input_string, replace_any_symbol_that_meet_here, replace_value):
     result_string = ""
     for symbol in input_string:
-        if symbol == search_value:
+        if any(symbol.__contains__(char) for char in replace_any_symbol_that_meet_here):
             result_string += replace_value
         else:
             result_string += symbol
