@@ -10,6 +10,10 @@ Expected Output:
 "Jon is developer musician"
 """
 import string
+import re
+def filter_alpha_regex (input_string):
+    result_str =re.sub(r'[^\w\s]',"",input_string)
+    return result_str
 
 
 def filter_alpha_manualy (input_string):
@@ -26,5 +30,7 @@ def filter_alpha_translate(input_string):
     return result_str
 
 str1 = "/*Jon is @developer & musician"
-print(filter_alpha_manualy(str1))
-print(filter_alpha_translate(str1))
+#print(filter_alpha_manualy(str1))
+#print(filter_alpha_translate(str1))
+print(filter_alpha_regex(str1))
+
