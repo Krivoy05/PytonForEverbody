@@ -17,21 +17,29 @@ import re
 def find_alphanumerical(input_string):
     result = []
     word_until_whitespace = ''
+    position_counter = 1
     for symbol in input_string:
-        if symbol ==' ':
+        if symbol ==' ' or position_counter == len(input_string):
+            word_until_whitespace += symbol
             contains_alpha = False
+            contains_digit = False
             for sub_symvol in word_until_whitespace:
                 if sub_symvol.isalpha():
                     contains_alpha = True
-                if sub_symvol.isdigit() and contains_alpha:
-                    result.append(word_until_whitespace)
+                if sub_symvol.isdigit():
+                    contains_digit = True
+                if contains_digit and contains_alpha:
+                    result.append(word_until_whitespace.strip())
+                    contains_alpha = False
+                    contains_digit = False
                     break
             word_until_whitespace = ''
         else:
             word_until_whitespace += symbol
+        position_counter += 1
     return result
 
-def find_alphanumerical_split_test(input_string):
+def find_alphanumerical_split(input_string):
     result = []
     words = input_string.split()
     for word in words:
@@ -40,6 +48,6 @@ def find_alphanumerical_split_test(input_string):
     return result
 
 
-str1 = "Emma25 is Data scientist50 and AI Expert 50a"
+str1 = "Emma25 is Data scientist50 and AI Expert a50a"
 print(find_alphanumerical(str1))
-print(find_alphanumerical_split_test(str1))
+print(find_alphanumerical_split(str1))
