@@ -24,12 +24,13 @@ def concat_zip(list1,list2):
     any(res2.append("".join(element)) for element in zipped_li)
     return res2
 
-#nie rozumiem tego
 def concat_zip_example(list1,list2):
     return [i+j for i,j in zip(list1,list2)]
 
 list1 = ["M", "na", "i", "Ke"]
 list2 = ["y", "me", "s", "lly"]
+li3 = [i + j for i, j in zip(list1, list2)]
+
 print(concat(list1,list2))
 print(concat_zip(list1,list2))
 print(concat_zip_example(list1,list2))
