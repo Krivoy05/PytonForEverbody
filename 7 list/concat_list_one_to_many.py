@@ -12,14 +12,14 @@ def concat_one_to_many_for_iteration(list1, list2):
     result = list()
     for i in list1:
         for j in list2:
-            result.append(i+" "+j)
+            result.append(i+j)
     return result
 def concat_one_to_many(list1, list2):
     result = list()
     result = [i+j for i in list1 for j in list2]
     return result
 
-list1 = ["Hello ", "take "]
+list1 = ["Hello ", "take ", "Seirgiej "]
 list2 = ["Dear", "Sir"]
 print(concat_one_to_many_for_iteration(list1,list2))
 print(concat_one_to_many(list1,list2))
