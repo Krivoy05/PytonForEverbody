@@ -20,5 +20,5 @@ def remove_empty_from_list_none(l):
 
 
 list1 = ["Mike", "", "Emma", "Kelly", "", "Brad"]
-print(remove_empty_from_list(list1))
-print(remove_empty_from_list_none(list1))
+#print(remove_empty_from_list(list1))
+#print(remove_empty_from_list_none(list1))

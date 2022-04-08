@@ -43,7 +43,7 @@ def parsing_list(list1,value_after_to_add,adding_value):
     return True
 
 
-list1 = [6000,10, 20, [300, 400, [6000,6000, 8000], 500], 30, 6000,40,6000]
+list1 = [6000,10, 20, [300, 400, [6000,6000,[4444,444,[6000],44,44], 8000], 500], 30, 6000,40,6000]
 print("Before add")
 print(list1)
 print("After add")
