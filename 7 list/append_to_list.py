@@ -18,8 +18,7 @@ def apend_to_list(list1,value_after_to_add,adding_value):
     i =0
     for val in list1:
         if islist(val):
-            #jesli tak parsujemy liste def
-            parsing_list(list1,value_after_to_add,adding_value)
+            parsing_list(val,value_after_to_add,adding_value)
         else:
             check_and_add_value(list1,val,value_after_to_add,adding_value,i)
         i += 1
@@ -33,7 +32,7 @@ def islist(list1):
     return isinstance(list1,list)
 
 def parsing_list(list1,value_after_to_add,adding_value):
-    i = 0;
+    i = 0
     for value_from_list in list1:
         test = islist(value_from_list)
         if islist(value_from_list):
@@ -44,7 +43,7 @@ def parsing_list(list1,value_after_to_add,adding_value):
     return True
 
 
-list1 = [10, 20, [300, 400, [000,000, 8000], 500], 30, 6000,40]
+list1 = [6000,10, 20, [300, 400, [6000,6000, 8000], 500], 30, 6000,40,6000]
 print("Before add")
 print(list1)
 print("After add")
