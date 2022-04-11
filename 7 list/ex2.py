@@ -17,9 +17,14 @@ Enter file: romeo.txt
 text_file = open("romeo.txt","r")
 ls =[]
 ls1 = []
+
 for line in text_file:
     words_list = line.split()
     ls = ls + words_list
-ls1 = set(ls)
-#need to sor set
-print(ls1)
+set1 = set(ls)
+elements_from_set = list()
+for element in set1:
+    elements_from_set.append(element)
+elements_from_set.sort()
+
+print(elements_from_set)
