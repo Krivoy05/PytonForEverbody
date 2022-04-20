@@ -27,4 +27,11 @@ for element in set1:
     elements_from_set.append(element)
 elements_from_set.sort()
 
+test = list()
+while len(set1)>=1:
+    test.append(set1.pop())
+test.sort()
+print(set1)
+
+print(test)
 print(elements_from_set)
