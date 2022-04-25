@@ -34,8 +34,5 @@ sample_dict = {
     'emp3': {'name': 'Brad', 'salary': 500}
 }
 
-print(sample_dict)
-
 result = change_valeue(sample_dict,'emp3','salary',8500)
-print(sample_dict)
 print(result)
