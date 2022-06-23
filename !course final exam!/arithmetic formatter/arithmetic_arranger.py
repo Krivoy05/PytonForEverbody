@@ -17,12 +17,41 @@ class pretty_arithmetic:
 
 def arithmetic_arranger(input_list, *print_result):
     arithmetic_list = parse_list(input_list)
-    get_pretty_result(arithmetic_list)
+    pretty_result_separate_operation = get_pretty_result(arithmetic_list)
+    pretty_lines = get_separete_pretty_lines(pretty_result_separate_operation)
+    result = get_result(pretty_lines,print_result)
+    return result
 
+def get_result(pretty_lines,is_print_result):
+    result = ""
+    if is_print_result:
+        for el in pretty_lines:
+            result += el
+            result += "\n"
+    else:
+        for el in pretty_lines[0:len(pretty_lines) - 1]:
+            result += el
+            result += "\n"
+    return result
 
+def get_separete_pretty_lines(li):
+    result_li = list()
+    number1 = ""
+    number2 = ""
+    dash = ""
+    result = ""
+    for el in li:
+        number1 += el.number1 + "    "
+        number2 += el.number2 +  "    "
+        dash    += el.dash    + "    "
+        result  += el.result  + "    "
 
+    result_li.append(number1)
+    result_li.append(number2)
+    result_li.append(dash)
+    result_li.append(result)
 
-    return True
+    return result_li
 
 def get_pretty_result(li):
     result = list()
@@ -131,5 +160,6 @@ def parse_list(li):
 
 
 
-arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True)
+result = arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True)
 
+print(result)
