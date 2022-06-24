@@ -8,12 +8,14 @@ class Arithmetic:
         if operation in "-":
             self.result = str(int(number1) - int(number2))
 
-class pretty_arithmetic:
+
+class PrettyArithmetic:
     def __init__(self,number1,number2,dash,result):
         self.number1 = number1
         self.number2 = number2
         self.dash = dash
         self.result = result
+
 
 def arithmetic_arranger(input_list, *print_result):
     arithmetic_list = parse_list(input_list)
@@ -21,6 +23,7 @@ def arithmetic_arranger(input_list, *print_result):
     pretty_lines = get_separete_pretty_lines(pretty_result_separate_operation)
     result = get_result(pretty_lines,print_result)
     return result
+
 
 def get_result(pretty_lines,is_print_result):
     result = ""
@@ -33,6 +36,7 @@ def get_result(pretty_lines,is_print_result):
             result += el
             result += "\n"
     return result
+
 
 def get_separete_pretty_lines(li):
     result_li = list()
@@ -53,6 +57,7 @@ def get_separete_pretty_lines(li):
 
     return result_li
 
+
 def get_pretty_result(li):
     result = list()
     for ar in li:
@@ -67,7 +72,7 @@ def get_pretty_result(li):
             result_len =  num1_len + 2
 
             #built pretty 1 number
-            for i in range(result_len- num1_len):
+            for i in range(result_len - num1_len):
                 pretty_num1 += " "
             # Get complete pretty 1 number
             pretty_num1 += ar.number1
@@ -111,8 +116,9 @@ def get_pretty_result(li):
             for i in range(result_len - len(ar.result)):
                 pretty_result += " "
             pretty_result += ar.result
-        result.append(pretty_arithmetic(pretty_num1,pretty_num2,pretty_dash,pretty_result))
+        result.append(PrettyArithmetic(pretty_num1,pretty_num2,pretty_dash,pretty_result))
     return result
+
 
 def input_lenth_check(li):
     result = False
@@ -122,6 +128,7 @@ def input_lenth_check(li):
     else:
         raise Exception("Error: Too many problems.")
     return result
+
 
 def is_all_elements_numbers(li):
     result = False
@@ -135,6 +142,7 @@ def is_all_elements_numbers(li):
             result = False
             raise Exception("Error: Numbers must only contain digits.")
     return result
+
 
 def parse_list(li):
     #throw exeption if element more than 5 or list is empty
@@ -159,7 +167,5 @@ def parse_list(li):
     return result_li
 
 
-
-result = arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
-
-print(result)
+#result = arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"],True)
+#print(result)
