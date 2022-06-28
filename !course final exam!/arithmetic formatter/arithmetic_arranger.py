@@ -18,10 +18,14 @@ class PrettyArithmetic:
 
 
 def arithmetic_arranger(input_list, *print_result):
-    arithmetic_list = parse_list(input_list)
-    pretty_result_separate_operation = get_pretty_result(arithmetic_list)
-    pretty_lines = get_separete_pretty_lines(pretty_result_separate_operation)
-    result = get_result(pretty_lines,print_result)
+    result = ""
+    try:
+        arithmetic_list = parse_list(input_list)
+        pretty_result_separate_operation = get_pretty_result(arithmetic_list)
+        pretty_lines = get_separete_pretty_lines(pretty_result_separate_operation)
+        result = get_result(pretty_lines,print_result)
+    except Exception as e:
+        print(e)
     return result
 
 
@@ -120,7 +124,7 @@ def get_pretty_result(li):
     return result
 
 
-def input_lenth_check(li):
+def input_length_check(li):
     result = False
     in_len = len(li)
     if in_len <= 5 and in_len>0:
@@ -135,7 +139,7 @@ def is_all_elements_numbers(li):
     for el in li:
         test = el.strip()
         if len(test)>4:
-            raise Exception("rror: Numbers cannot be more than four digits.")
+            raise Exception("Error: Numbers cannot be more than four digits.")
         if test.isdigit():
             result = True
         else:
@@ -146,7 +150,7 @@ def is_all_elements_numbers(li):
 
 def parse_list(li):
     #throw exeption if element more than 5 or list is empty
-    input_lenth_check(li)
+    input_length_check(li)
     result_li = list()
 #split by + - , else throw exeption
     raw = list()
@@ -165,7 +169,3 @@ def parse_list(li):
             raise Exception("Error: Operator must be '+' or '-'.")
         result_li.append(Arithmetic(raw[0].strip(),raw[1].strip(),raw[2]))
     return result_li
-
-
-#result = arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"],True)
-#print(result)

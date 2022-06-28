@@ -19,9 +19,6 @@ class MyTestCase(unittest.TestCase):
         #then
         self.assertEqual(expected_result, result)
 
-# to do affifmetic arranger exeption test
-
-
     def test_get_result_true(self):
         # given
         result = aa.get_result(["1","2","3","4"],True)
@@ -70,21 +67,35 @@ class MyTestCase(unittest.TestCase):
         # then
         self.assertEqual(expected_li, result)
 
-# find way to test exeptions
-    @unittest.skip("doesnt know why fail")
-    def test_input_lenth_check(self):
+    def test_input_length_check(self):
         # given
-        result_pass_a = aa.input_lenth_check(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"])
-        result_pass_b = aa.input_lenth_check(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49", "523 - 49"])
-
-        #these part doesn work
-        self.assertRaises(Exception, aa.input_lenth_check(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49", "523 - 49", "523 - 49"]))
-        #result_fail_b = aa.input_lenth_check([])
+        result_pass_a = aa.input_length_check(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"])
+        result_pass_b = aa.input_length_check(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49", "523 - 49"])
         # when/ then
         self.assertEqual(True, result_pass_a)
         self.assertEqual(True, result_pass_b)
+        self.assertRaises(Exception,aa.input_length_check, ["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49", "523 - 49", "523 - 49"])
+        self.assertRaises(Exception,aa.input_length_check,[])
 
+    def test_is_all_elements_numbers(self):
+        #given
+        pass_li = ["32 ","8 "]
+        fail_li = ["32z ", "8 "]
+        fail_li2 = ["32333 ","8 "]
+        #when/then
+        self.assertEqual(True,aa.is_all_elements_numbers(pass_li))
+        self.assertRaises(Exception,aa.is_all_elements_numbers,fail_li)
+        self.assertRaises(Exception, aa.is_all_elements_numbers, fail_li2)
 
+# find way to conpare 2 classes. Chceced manualy, must pass
+    @unittest.skip("doesnt know why fail")
+    def test_parse_list(self):
+        #when
+        in_pass_li = ["1 + 22"]
+        pass_result = aa.Arithmetic("1", "22", "+")
+        in_ex_li = ["32 * 8", "1 - 3801", "9999 + 9999", "523 - 49"]
+        self.assertRaises(Exception, aa.parse_list,in_ex_li)
+        self.assertEqual(pass_result, aa.parse_list(in_pass_li))
 
 if __name__ == '__main__':
     unittest.main()
