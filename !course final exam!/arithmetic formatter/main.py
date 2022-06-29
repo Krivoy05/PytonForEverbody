@@ -9,6 +9,6 @@ suite = loader.discover(start_dir)
 runner = unittest.TextTestRunner()
 runner.run(suite)
 
-result = aa.arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"],True)
+result = aa.arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
 print(result)
 

@@ -22,7 +22,7 @@ def arithmetic_arranger(input_list, *print_result):
     try:
         arithmetic_list = parse_list(input_list)
         pretty_result_separate_operation = get_pretty_result(arithmetic_list)
-        pretty_lines = get_separete_pretty_lines(pretty_result_separate_operation)
+        pretty_lines = get_separate_pretty_lines(pretty_result_separate_operation)
         result = get_result(pretty_lines,print_result)
     except Exception as e:
         print(e)
@@ -42,7 +42,7 @@ def get_result(pretty_lines,is_print_result):
     return result
 
 
-def get_separete_pretty_lines(li):
+def get_separate_pretty_lines(li):
     result_li = list()
     number1 = ""
     number2 = ""
@@ -169,3 +169,4 @@ def parse_list(li):
             raise Exception("Error: Operator must be '+' or '-'.")
         result_li.append(Arithmetic(raw[0].strip(),raw[1].strip(),raw[2]))
     return result_li
+

@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         #when
         expected_result = "  32         1      9999      523    \n+  8    - 3801    + 9999    -  49    \n____    ______    ______    _____    \n  40     -3800     19998      474    \n"
         #then
-        self.assertEqual(expected_result, result)
+        self.assertEqual(expected_result, result,"Result is not that was expected")
 
     def test_arithmetic_arranger_without_result(self):
         # given
@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
         #when
         expected_result = "  32         1      9999      523    \n+  8    - 3801    + 9999    -  49    \n____    ______    ______    _____    \n"
         #then
-        self.assertEqual(expected_result, result)
+        self.assertEqual(expected_result, result,"Result is not that was expected")
 
     def test_get_result_true(self):
         # given
@@ -35,18 +35,18 @@ class MyTestCase(unittest.TestCase):
         # then
         self.assertEqual(expected_result, result)
 
-    def test_get_separete_pretty_lines(self):
+    def test_get_separate_pretty_lines(self):
         # given
         a = aa.PrettyArithmetic("1","1","__","2")
         b = aa.PrettyArithmetic("2", "2", "__", "4")
         test_li = list()
         test_li.append(a)
         test_li.append(b)
-        result = aa.get_separete_pretty_lines(test_li)
+        result = aa.get_separate_pretty_lines(test_li)
         # when
         expected_result = ['1    2    ', '1    2    ','__    __    ', '2    4    ']
         # then
-        self.assertEqual(expected_result, result)
+        self.assertEqual(expected_result, result,"Formating separate pretty lines doesn't work properly")
 
 #find way to conpare 2 classes. Chceced manualy, must pass
     @unittest.skip("doesnt know why fail")
@@ -65,7 +65,7 @@ class MyTestCase(unittest.TestCase):
         expected_li.append(ra)
         expected_li.append(rb)
         # then
-        self.assertEqual(expected_li, result)
+        self.assertEqual(expected_li, result,"Formating pretty lines doesn't work properly")
 
     def test_input_length_check(self):
         # given
