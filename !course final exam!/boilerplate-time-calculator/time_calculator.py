@@ -1,10 +1,11 @@
+#class for parsing data purporse
 class Time:
     def __init__(self, hours, minutes, period):
         self.period = period
         self.minutes = minutes
         self.hours = hours
 
-
+#class for get result
 class TimeDays:
     def __init__(self, hours, minutes, period, days_later, day_of_week):
         self.day_of_week = day_of_week
