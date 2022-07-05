@@ -5,10 +5,16 @@ from budget import create_spend_chart
 
 class UnitTests(unittest.TestCase):
     maxDiff = None
+
     def setUp(self):
         self.food = budget.Category("Food")
         self.entertainment = budget.Category("Entertainment")
         self.business = budget.Category("Business")
+
+    def tearDown(self):
+        del self.food
+        del self.entertainment
+        del self.business
 
     def test_deposit(self):
         self.food.deposit(900, "deposit")

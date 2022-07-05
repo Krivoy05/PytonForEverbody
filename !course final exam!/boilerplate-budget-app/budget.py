@@ -1,9 +1,11 @@
 class Category:
     ledger = list()
     balance = 0
+    cost = 0
 
     def __init__(self, category):
         self.category = category
+        self.ledger = list()
 
     def deposit(self, amount, *description):
         if isinstance(description,tuple):
@@ -12,7 +14,7 @@ class Category:
             else:
                 description = ""
         #The method should append an object to the ledger list in the form of {"amount": amount, "description": description}.
-        self.ledger.insert(0,{"amount": amount, "description": description})
+        self.ledger.append({"amount": amount, "description": description})
         self.balance += amount
 
     def withdraw(self, amount, *description):
@@ -23,8 +25,9 @@ class Category:
                 description = ""
         #This method should return True if the withdrawal took place, and False otherwise.
         if self.balance >= amount:
-            self.ledger.insert(0, {"amount": -amount, "description": description})
+            self.ledger.append( {"amount": -amount, "description": description})
             self.balance -= amount
+            self.cost += amount
             return True
         else:
             return False
@@ -33,16 +36,16 @@ class Category:
         #returns the current balance of the budget category based on the deposits and withdrawals that have occurred.
         return self.balance
 
-    def get_transfer(self, amount, from_category):
-        self.ledger.insert(0, {"amount": amount, "Transfer from":  from_category.category})
-        self.balance += amount
+    def get_transfer(self, amount, target_category, from_category):
+        target_category.ledger.append( {"amount": amount, "description": "Transfer from " + from_category})
+        target_category.balance += amount
 
     def transfer(self, amount, target_category):
         if self.balance >= amount:
-            self.ledger.insert(0, {"amount": -amount, "Transfer to":  target_category.category})
-            t_c = target_category.category
-            target_category.get_transfer(amount, target_category)
+            self.ledger.append( {"amount": -amount, "description": "Transfer to " + target_category.category})
+            target_category.get_transfer(amount, target_category , self.category)
             self.balance -= amount
+            self.cost += amount
             # This method should return True if the transfer took place, and False otherwise.
             return True
         else:
@@ -81,6 +84,7 @@ class Category:
             space_count = 0
             for value in el.values():
                 data.append(value)
+            data[0] = "{:.2f}".format(float(data[0]))
             for el in data:
                 space_count += len(str(el))
             if space_count <= 30:
@@ -96,16 +100,15 @@ class Category:
             result_str += str(data[0]) + "\n"
 
         #Done Prety view
-        result_str += "Total"
-        spaces_count = 30 - (len("Total") + len(str(self.balance)))
-        for i in range(spaces_count):
-            result_str += " "
-        result_str += str(self.balance)
+        result_str += "Total: "
+
+        #  spaces_count = 30 - (len("Total") + len(str(self.balance)))
+        #for i in range(spaces_count):
+        #    result_str += "
+
+        result_str += str(float(self.balance))
         return result_str
 
 def create_spend_chart(categories):
     print("TODOSpend chart")
 
-f =Category("AAA")
-f.deposit(-1000,"restaurant and more food for dessert")
-print(f)
