@@ -1,32 +1,40 @@
 class Category:
-    leger = list()
+    ledger = list()
     balance = 0
 
     def __init__(self, category):
         self.category = category
 
-    def deposit(self, amount, description):
+    def deposit(self, amount, *description):
+        if isinstance(description,tuple):
+            if len(description) == 1:
+                description = description[0]
+            else:
+                description = ""
         #The method should append an object to the ledger list in the form of {"amount": amount, "description": description}.
-        if description is Null:
-            description = ""
-        self.leger.append("\"amount\": "+str(amount)+", \"description\": "+description)
+        self.ledger.insert(0,{"amount": amount, "description": description})
         self.balance += amount
 
-    def withdraw(self, amount, description):
+    def withdraw(self, amount, *description):
+        if isinstance(description, tuple):
+            if len(description) == 1:
+                description = description[0]
+            else:
+                description = ""
         #This method should return True if the withdrawal took place, and False otherwise.
         if self.balance >= amount:
-            self.leger.append("\"amount\": "+str(-amount)+", \"description\": "+description)
+            self.ledger.insert(0, {"amount": -amount, "description": description})
             self.balance -= amount
             return True
         else:
             return False
 
-    def get_balance(self, category):
+    def get_balance(self):
         #returns the current balance of the budget category based on the deposits and withdrawals that have occurred.
         return self.balance
 
     def get_transfer(self, amount, from_category):
-        self.leger.append("\"amount\": " + str(amount) + ", \"Transfer to \": " + from_category)
+        self.ledger.insert(0, {"amount": amount, "Transfer from":  from_category})
         self.balance += amount
 
     def transfer(self, amount,target_category):
@@ -36,7 +44,7 @@ class Category:
          budget category with the amount and the description "Transfer from [Source Budget Category]".
           If there are not enough funds, nothing should be added to either ledgers."""
         if self.balance >= amount:
-            self.leger.append("\"amount\": "+str(-amount)+", \"Transfer to \": "+target_category.category)
+            self.ledger.insert(0, {"amount": -amount, "Transfer to":  target_category})
             target_category.get_transfer(amount, self.category)
             self.balance -= amount
             # This method should return True if the transfer took place, and False otherwise.
@@ -56,11 +64,28 @@ class Category:
         else:
             return False
 
-    def create_spend_chart(categories):
-        print("TODOSpend chart")
+    def __str__(self):
+        # title creation
+        star_count = (30 - len(self.category)) // 2
+        title = ""
+        #make stars before
+        for i in range(star_count):
+            title += "*"
+        #adding name
+        title += self.category
+        #make stars after
+        star_count = 30 - len(title)
+        for i in range(star_count):
+            title += "*"
 
-food = Category("food")
-water = Category("water")
-food.deposit(200, "test deposit")
-food.transfer(200, water)
-print(food)
+        #TO DO Pretty view
+
+        # adding title to result string
+        result_str = title +"\n"
+        for el in self.ledger:
+            result_str += str(el)+"\n"
+
+        return result_str
+
+def create_spend_chart(categories):
+    print("TODOSpend chart")
