@@ -93,9 +93,9 @@ class Category:
                     result_str += " "
             else:
                 # if describe moe 30 symbols then cut describe
-                possible_to_print_symbols = 30 - len(str(data[0]))
-                result_str += data[1][0:possible_to_print_symbols]
-                space_count = 0
+                possible_to_print_symbols = 30 - (len(str(data[0])) + 1)
+                result_str += data[1][0:possible_to_print_symbols] + " "
+
 
             result_str += str(data[0]) + "\n"
 
