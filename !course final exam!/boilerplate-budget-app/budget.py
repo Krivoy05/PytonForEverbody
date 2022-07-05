@@ -34,18 +34,14 @@ class Category:
         return self.balance
 
     def get_transfer(self, amount, from_category):
-        self.ledger.insert(0, {"amount": amount, "Transfer from":  from_category})
+        self.ledger.insert(0, {"amount": amount, "Transfer from":  from_category.category})
         self.balance += amount
 
-    def transfer(self, amount,target_category):
-        """A transfer method that accepts an amount and another budget category as arguments.
-         The method should add a withdrawal with the amount and the description
-         "Transfer to [Destination Budget Category]". The method should then add a deposit to the other
-         budget category with the amount and the description "Transfer from [Source Budget Category]".
-          If there are not enough funds, nothing should be added to either ledgers."""
+    def transfer(self, amount, target_category):
         if self.balance >= amount:
-            self.ledger.insert(0, {"amount": -amount, "Transfer to":  target_category})
-            target_category.get_transfer(amount, self.category)
+            self.ledger.insert(0, {"amount": -amount, "Transfer to":  target_category.category})
+            t_c = target_category.category
+            target_category.get_transfer(amount, target_category)
             self.balance -= amount
             # This method should return True if the transfer took place, and False otherwise.
             return True
@@ -53,17 +49,13 @@ class Category:
             return False
 
     def check_funds(self, amount):
-        """
-        A check_funds method that accepts an amount as an argument. This method should be used by both the withdraw
-        method and transfer method.
-        """
-        # It returns False if the amount is greater than the balance of the budget category and
-        #returns True otherwise.
+        # It returns False if the amount is greater than the balance of the budget category and returns True otherwise.
         if amount <= self.balance:
             return True
         else:
             return False
 
+    #Done pretty print
     def __str__(self):
         # title creation
         star_count = (30 - len(self.category)) // 2
@@ -78,14 +70,42 @@ class Category:
         for i in range(star_count):
             title += "*"
 
-        #TO DO Pretty view
+        #Done Pretty view
 
         # adding title to result string
         result_str = title +"\n"
-        for el in self.ledger:
-            result_str += str(el)+"\n"
 
+        for el in self.ledger:
+            #parse dictionary
+            data = list()
+            space_count = 0
+            for value in el.values():
+                data.append(value)
+            for el in data:
+                space_count += len(str(el))
+            if space_count <= 30:
+                result_str += data[1]
+                for i in range(30 - space_count):
+                    result_str += " "
+            else:
+                # if describe moe 30 symbols then cut describe
+                possible_to_print_symbols = 30 - len(str(data[0]))
+                result_str += data[1][0:possible_to_print_symbols]
+                space_count = 0
+
+            result_str += str(data[0]) + "\n"
+
+        #Done Prety view
+        result_str += "Total"
+        spaces_count = 30 - (len("Total") + len(str(self.balance)))
+        for i in range(spaces_count):
+            result_str += " "
+        result_str += str(self.balance)
         return result_str
 
 def create_spend_chart(categories):
     print("TODOSpend chart")
+
+f =Category("AAA")
+f.deposit(-1000,"restaurant and more food for dessert")
+print(f)
