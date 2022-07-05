@@ -110,5 +110,57 @@ class Category:
         return result_str
 
 def create_spend_chart(categories):
-    print("TODOSpend chart")
+    result_str = "Percentage spent by category\n"
+    total_costs = 0
+    procent_list = list()
+    categorys_list = list()
+    categorsy_count = 0
+    for category in categories:
+        total_costs += category.cost
+        categorsy_count += 1
+        categorys_list.append(category.category)
+
+    longest_category_name = categorys_list[0]
+    for category in categories:
+        procent_list.append(category.cost*100//total_costs)
+        if len(longest_category_name) < len(category.category):
+            longest_category_name = category.category
+    total_length = 5 + categorsy_count + categorsy_count * 2
+    #print chart
+    counter = 100
+    while counter >= 0:
+        if counter == 100:
+            result_str += str(counter)+ "| "
+        elif counter == 0:
+            result_str += "  " + str(counter) + "| "
+        else:
+            result_str += " " + str(counter) + "| "
+        for proc in procent_list:
+            if proc >= counter:
+                result_str += "o  "
+            else:
+                result_str += "   "
+        result_str += "\n"
+        counter -= 10
+
+    #print dashes
+    end_of_chart = "    "
+    for i in range(total_length - 4):
+        end_of_chart += "-"
+    end_of_chart += "\n"
+    #Print categorys
+    for i in range(len(longest_category_name)):
+        end_of_chart += "     "
+        for el in categorys_list:
+            if len(el) > i:
+                end_of_chart += el[i] + "  "
+            else:
+                end_of_chart += "   "
+        end_of_chart += "\n"
+    #threre are no new line in test
+    end_of_chart = end_of_chart[:-1]
+    result_str += end_of_chart
+    return result_str
+
+
 
