@@ -37,10 +37,9 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
             expected_balls_list.append(colour)
     for i in range(num_experiments):
         pull_out_balls = hat_local.draw(num_balls_drawn)
-
-        #recznie chek with remoe
-        check  = False
+        check = False
         check_list = list()
+        #check if exceptet bals are in pulluped
         for i in range(len(expected_balls_list)):
             for el in pull_out_balls:
                 if expected_balls_list[i] == el:
@@ -51,6 +50,6 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
             check = True
         if check:
             how_many_times_got_expected_balls += 1
-            check = False
+        #returning pull uped balls
         hat_local.contents = hat_local_balLs_list.copy()
     return how_many_times_got_expected_balls / num_experiments
